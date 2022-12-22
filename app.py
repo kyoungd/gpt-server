@@ -32,5 +32,9 @@ def gpt3():
     # Return the response as JSON
     return flask.jsonify({"message": message})
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    return flask.jsonify({"message": "pong"})
+
 if __name__ == "__main__":
     app.run()
