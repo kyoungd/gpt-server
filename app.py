@@ -2,6 +2,7 @@ import openai
 import flask
 from dotenv import load_dotenv
 import os
+import json
 
 app = flask.Flask(__name__)
 
@@ -35,6 +36,16 @@ def gpt3():
 @app.route("/ping", methods=["GET"])
 def ping():
     return flask.jsonify({"message": "pong"})
+
+@app.route("/tech-code", methods=["GET"])
+def tech_code():
+    # Open the JSON file
+    with open("tech-code.json", "r") as f:
+        # Load the contents of the file as a Python dictionary
+        tech_code_dict = json.load(f)
+
+    # Return the dictionary as JSON
+    return flask.jsonify(tech_code_dict)
 
 if __name__ == "__main__":
     app.run()
