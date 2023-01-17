@@ -1,0 +1,47 @@
+
+{
+    "processing": [
+        {
+            "id": 100,
+            "question": "Can you please tell me about the accident?",
+            "prompt": "Extract the information from the following paragraph and answer them in the json format. ",
+            "responses": [
+                {
+                    "id": 201,
+                    "gpt3" : " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
+                    "is_neccessary": true,
+                    "priority_number": 1,
+                    "question": "Can you tell me your name, please?  With spelling? "
+                }
+                {
+                    "id": 202,
+                    "gpt3" : " { \"q\" : \"when it happened\", \"id\": 202, \"a\" : \"date and time\" or \"did not say\" } ",
+                    "is_neccessary": true,
+                    "priority_number": 1,
+                    "question": "Can you tell me your name, please?  With spelling? "
+                }
+            ],
+            "type": "extract",
+        },
+        {
+            "id" :101,
+            "responses": [
+                {
+                    "id": 203,
+                    "gpt3" : " { \"q\" : \"name of the city\", \"id\": 203, \"a\" : \"city\" or \"did not say\" } ",
+                    "is_neccessary": true,
+                    "priority_number": 1,
+                    "question": "Can you tell me your name, please?  With spelling? "
+                }
+            ],
+            "type": other,
+        }
+}
+
+write a code in python.  extract "responses.gpt3" as an array.  "a" field should be blank.  The field "type" is "extract".
+
+
+Extract the information from the following paragraph and answer them in the json format.
+1. { "q" : "asking for automobile accident help service", "a" : "yes" or "no" or "unclear" }
+2. { "q" : "caller name": "a": "name" or "unclear"}
+"I got into a big pile up last night."
