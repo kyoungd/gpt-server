@@ -10,19 +10,19 @@ class ProcessAction:
 
     def doMatch(self, answer):
         answers = self._action['answer']
-        if answer['a'].lower() in [s.lower() for s in answers]:
+        if answer.strip().lower() in [s.lower() for s in answers]:
             return True
         return False
 
     def doSimilarity(self, answer, similarity):
         answers = self._actions['answer']
-        for answer in answers:
-            if self.similar(answer['a'], answer, similarity):
+        for one in answers:
+            if self.similar(answer, one, similarity):
                 return True
         return False
 
     def doExist(self, answer):
-        if answer['a'].strip() == '':
+        if answer.strip() == '':
             return False
         return True
 
