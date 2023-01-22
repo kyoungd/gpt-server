@@ -3,13 +3,24 @@ from gpt3 import GPT3
 from typing import Union
 import json
 from globalState import GlobalState
-class BlockExtract:
+
+class GPT3Call:
     def __init__(self, globalState:GlobalState):
         self._globalState = globalState
         self._state = globalState.state
         self._template = globalState.template
         self._block = globalState.GetTemplateBlock(self._state['id'])
         self._sequence = self._state['sequence']
+
+    def _responseMessage(self):
+        prompt = "If the following statement is simple factual statement without emotion, reply with 'okay'.  Otherwise write a single and simple sympathetic statement as a call center operator to the following statement: "
+        if self._globalState.IsRepeatLastQuestion:
+            return prompt
+        if self._block['is_sympathy_reply']:
+            return prompt
+        return "Okay"
+
+    ResponseMessage = property(_responseMessage)
 
     def Message(self, id, sequence):
         if sequence == 'q':
@@ -30,27 +41,10 @@ class BlockExtract:
 
     def callGpt3(self, reply):
         gpt3Query = self.getGpt3Parse()
-        query = f"{self._block['prompt']} {gpt3Query}  \"{reply}\" "
+        prompt = self._block['prompt'] if 'prompt' in self._block else self._template['prompt']
+        query = f"{prompt} {gpt3Query}  \"{reply}\" "
         response = GPT3.run(query)
         return response
-
-    def updateState(self, replies):
-        gpt3s = self._state['gpt3']
-        for reply in replies:
-            gpt3 = next((obj for obj in gpt3s if obj['id'] == reply['id']), None)
-            if gpt3 is None:
-                continue
-            gpt3['a'] = reply['a']
-        return self._state
-
-    def firstUnanswered(self, replies):
-        gpt3s = self._state['gpt3']
-        for reply in replies:
-            gpt3 = next((obj for obj in gpt3s if obj['id'] == reply['id']), None)
-            if gpt3 is None:
-                continue
-            gpt3['a'] = reply['a']
-        return self._state
 
     def ProcessResponse(self, message):
         gpt3Result = self.callGpt3(message)
@@ -59,10 +53,3 @@ class BlockExtract:
         replies = reply if isinstance(reply, list) else [reply]
         self._globalState.UpdateStates(replies, ProcessAction.run)
         self._globalState.NextId()
-        # self.updateState(reply if isinstance(reply, list) else [reply])
-        # for action in self._block['actions']:
-        #     processAction = ProcessAction.run(self._state, action, reply)
-        #     if processAction:
-        #         self._state['id'] = action['next']
-        #         return action
-        # return None

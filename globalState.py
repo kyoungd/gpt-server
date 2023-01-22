@@ -38,15 +38,20 @@ class GlobalState:
                         "scope": response["scope"],
                         "q": response["gpt3"],
                         "a": "", 
-                        "is_answered":  response["is_neccessary"],
+                        "is_answered":  response["is_answered"],
                         "is_neccessary": response["is_neccessary"],
-                        "is_field": True
+                        "is_sympathy": response["is_sympathy_reply"],
+                        "score": 0,
+                        "is_field": True,
+                        "answer_count": 0
                     })
                 else:
                     gpt3_responses.append({
                         "id": response["id"],
                         "type": processing["type"],
-                        "is_field": False
+                        "is_sympathy": response["is_sympathy_reply"],
+                        "is_field": False,
+                        "answer_count": 0
                     })
         state['gpt3'] = gpt3_responses
         return state
@@ -73,12 +78,13 @@ class GlobalState:
         block = self.GetTemplateBlock(self.state['id'])
         if block is None:
             return None
+        prompt = block['prompt'] if 'prompt' in block else self.template['prompt']
         if block["scope"] != 0:
-            query = f"{block['prompt']} {block['gpt3']} \"{reply}\" "
+            query = f"{prompt} {block['gpt3']} \"{reply}\" "
             return query
-        gpt3s = list(filter(lambda x: x['scope'] == block['id'] and x['is_field'], self.state['gpt3']))
+        gpt3s = list(filter(lambda x: ('scope' in x) and (x['scope'] == block['id']) and x['is_field'], self.state['gpt3']))
         q_column = [obj['q'] for obj in gpt3s]
-        query = f"{block['prompt']} {','.join(q_column)} \"{reply}\" "
+        query = f"{prompt} {','.join(q_column)} \"{reply}\" "
         return query
 
     def UpdateStates(self, replies, func = None):
@@ -88,6 +94,9 @@ class GlobalState:
             if gpt3 is None:
                 continue
             gpt3['a'] = reply['a']
+            # answer_count should only increase if the question is not extract (open ended question)
+            if len(replies) == 1:
+                gpt3['answer_count'] += 1
             if func is None:
                 continue
             id = gpt3['id']
@@ -108,17 +117,15 @@ class GlobalState:
         return None
 
     def _rateCall(self):
-        ratings = self.template['score']
+        ratings = self.template['rating']
         score = self.Score
-        for rating in ratings:
-            if score >= rating['score']:
-                return rating['rating']
-        return None
+        rating = next((obj for obj in ratings if obj['score'] <= self.Score), None)
+        return rating
 
     def _score(self):
         score = 0
         for gpt3 in self.state['gpt3']:
-            score += gpt3['score']
+            score += gpt3['score'] if 'score' in gpt3 else 0
         return score
 
     def _isNeccessaryAnswered(self):
@@ -127,9 +134,29 @@ class GlobalState:
                 return False
         return True
     
+    def _isSympathy(self):
+        id = self.state['id']
+        block = self.GetStateBlock(id)
+        return block['is_sympathy']
+
+    def _isRepeatLastQuestion(self):
+        id = self.state['id']
+        block = self.GetStateBlock(id)
+        return block['answer_count'] > 0
+
+    def _isGoodBye(self):
+        id = self.state['id']
+        stateBlock = self.GetStateBlock(id)
+        if stateBlock['answer_count'] >= 3:
+            return True
+        return stateBlock['type'] == 'goodbye'
+
     Score = property(_score)
     IsNeccessaryAnswered = property(_isNeccessaryAnswered)
     Rating = property(_rateCall)
+    IsSympathyReply = property(_isSympathy)
+    IsRepeatLastQuestion = property(_isRepeatLastQuestion)
+    IsGoodBye = property(_isGoodBye)
 
     def NextId(self):
         id = self.state['id']
@@ -141,12 +168,10 @@ class GlobalState:
                 gpt3s = sorted(inqueries, key=lambda x: x['id'])
                 self.state['id'] = gpt3s[0]['id']
             else:
+                id = templateBlock['scope']
+                templateBlock = self.GetTemplateBlock(id)
                 self.state['id'] = templateBlock['next']
         elif stateBlock['type'] == 'greetings':
             if stateBlock['is_answered']:
                 self.state['id'] = stateBlock['action']['next']
 
-    def IsGoodBye(self):
-        id = self.state['id']
-        stateBlock = self.GetStateBlock(id)
-        return stateBlock['type'] == 'goodbye'

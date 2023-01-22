@@ -5,6 +5,11 @@
         "a": "did not say"
     },
     {
+        "q": "phone number",
+        "id": 202,
+        "a": "did not say"
+    },
+    {
         "q": "was there injury",
         "id": 203,
         "a": "severe"
@@ -37,11 +42,6 @@
     {
         "q": "whos fault is it?",
         "id": 209,
-        "a": "did not say"
-    },
-    {
-        "q": "phone number",
-        "id": 212,
         "a": "did not say"
     }
 ]
