@@ -1,6 +1,6 @@
 import spacy
 
-nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_md")
 
 class ProcessAction:
     def __init__(self, state, action, answer):

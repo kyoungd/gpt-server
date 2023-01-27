@@ -1,20 +1,63 @@
-import openai
-import flask
+from flask import Flask, abort, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 import json
-from google.cloud import speech
+from tempfile import NamedTemporaryFile
+from io import BytesIO
+import base64
+import openai
+import banana_dev
+from processInput import ProcessInput
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
+CORS(app)
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("BANANA_WHISPER_API_KEY")
+model_key = os.getenv("BANANA_WHISPER_MODEL_KEY")
+
+
+def getData(block):
+    try:
+        data = block['data'] if len(block['data'].keys()) > 0 else None
+        return data
+    except Exception as e:
+        return None
+
+def getResponse(block):
+    try:
+        message = block['message']
+        return message
+    except Exception as e:
+        return None
+
+def processQuery(data, response):
+    if data is None:
+        return ProcessInput.Talk(data, response)
+    result = ProcessInput.Talk(data, response)
+    if result['continue']:
+        return ProcessInput.Talk(data)
+    return result
+
+@app.route('/callcenter', methods=['POST'])
+def call():
+    try:
+        # Parse the request body as JSON
+        block = request.get_json()
+        data = getData(block)
+        response = getResponse(block)
+        result = processQuery(data, response)
+        return jsonify(result['data'])
+    except Exception as e:
+        abort(str(e), 500)
 
 @app.route("/gpt3", methods=["POST"])
 def gpt3():
     try:
         # Parse the request body as JSON
-        data = flask.request.get_json()
+        data = request.get_json()
         # Get the "question" field from the request body
         question = data["question"]
         prompt = (f"{question}\n")
@@ -27,14 +70,13 @@ def gpt3():
         )
         message = completions.choices[0].text
         # Return the response as JSON
-        return flask.jsonify({"status_code": 200, "message": message})
+        return jsonify({"status_code": 200, "message": message})
     except Exception as e:
-        return flask.jsonify({"status_code": 500, "message": str(e)})
-
+        return jsonify({"status_code": 500, "message": str(e)})
 
 @app.route("/ping", methods=["GET"])
 def ping():
-    return flask.jsonify({"message": "pong"})
+    return jsonify({"message": "pong"})
 
 @app.route("/tech-code", methods=["GET"])
 def tech_code():
@@ -44,15 +86,15 @@ def tech_code():
             # Load the contents of the file as a Python dictionary
             tech_code_dict = json.load(f)
         # Return the dictionary as JSON
-        return flask.jsonify(tech_code_dict)
+        return jsonify(tech_code_dict)
     except Exception as e:
-        return flask.jsonify({"status_code": 500, "message": str(e)})
+        return jsonify({"status_code": 500, "message": str(e)})
 
 @app.route("/picture", methods=["POST"])
 def picture():
     try:
         # Parse the request body as JSON
-        data = flask.request.get_json()
+        data = request.get_json()
         # Get the "question" field from the request body
         size = data["size"]
         n = data["n"]
@@ -63,9 +105,47 @@ def picture():
             size: size
         })
         # Return the response as JSON
-        return flask.jsonify({"status_code": 200, "result": result})
+        return jsonify({"status_code": 200, "result": result})
     except Exception as e:
-        return flask.jsonify({"status_code": 500, "result": str(e)})
+        return jsonify({"status_code": 500, "result": str(e)})
+
+@app.route("/audio", methods=["POST"])
+def audio():
+    try:
+        text = request.form['text']
+        wavfile = request.files['wavfile']
+
+        temp_file = NamedTemporaryFile()
+
+        # Write the blob data to the temporary file
+        wavfile.save(temp_file)
+
+        # Expects an mp3 file named test.mp3 in directory
+        with open(temp_file.name, 'rb') as file:
+            mp3bytes = BytesIO(file.read())
+        mp3 = base64.b64encode(mp3bytes.getvalue()).decode("ISO-8859-1")
+
+        model_payload = {"mp3BytesString": mp3}
+
+        out = banana_dev.run(api_key, model_key, model_payload)
+        data = data = out['modelOutputs']
+        text_concat = ""
+        for item in data:
+            text_concat += item['text'] + " "
+
+        text_concat = text_concat.strip()
+        # Now we can store the result object for this file.
+        return({
+            'status': 200,
+            'message': 'OK',
+            'result': text_concat,
+        })
+    except Exception as e:
+        return({
+            'status': 500,
+            'message': 'Internal Server Error',
+            'result': str(e)
+        })
 
 if __name__ == "__main__":
     app.run()

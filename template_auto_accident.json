@@ -8,7 +8,7 @@
             "contactBy": "immediate",
             "contactEmail": "kyoungd@hotmail.com",
             "contactPhone": "123-456-7890",
-            "statement": "Thank you for calling.  One of our qualifying lawyer will call you within 4 hours.  Thank you and take care."
+            "statement": "Thank you.  I believe we gather enough information to move forward.  One of our qualified lawyer will call you within 4 hours.  Thank you and take care."
         },
         {
             "id": 902,
@@ -17,7 +17,7 @@
             "contactBy": "next_day",
             "contactEmail": "kyoungd@hotmail.com",
             "contactPhone": "123-456-7890",
-            "statement": "Thank you for calling.  One of our qualifying lawyer will call you within 24 hours.  Thank you and take care."
+            "statement": "Thank you.  I believe we gather enough information to move forward.  One of our qualified lawyer will call you within 24 hours.  Thank you and take care."
         },
         {
             "id": 903,
@@ -26,7 +26,7 @@
             "contactBy": "week",
             "contactEmail": "kyoungd@hotmail.com",
             "contactPhone": "123-456-7890",
-            "statement": "Thank you for calling.  One of our qualifying lawyer will call you within 3 business days.  Thank you and take care."
+            "statement": "Thank you.  I believe we gather enough information to move forward.  One of our qualifying lawyer will call you within 3 business days.  Thank you and take care."
         },
         {
             "id": 909,
@@ -34,7 +34,7 @@
             "caseQuality": "F",
             "contactBy": "never",
             "contactEmail": "",
-            "statement": "Thank you for calling, but we do not handle the type of problem you told us.  We are sorry about that.  Please take care."
+            "statement": "Thank you for calling, but we do not handle that type of problems.  We are sorry about that.  Please take care."
         }
     ],
     "start_id": 100,

@@ -1,7 +1,7 @@
 
 ### Virtual Environment
 pip install virtualenv
-virtualenv -version
+virtualenv --version
 virtualenv <env-name>
 source <env-name>/bin/activate
 deactivate
@@ -35,8 +35,6 @@ Extract the information from the following paragraph and answer them in the json
 12. { "q" : "your phone number", "a": "number" or "did not say" }
 
 
-
-
 U: "Hi.  My name is Amy.  Thanks for calling Accident Specialists.  How can I help you?"
 C: "Hi.  I need help with a car accident.  Can you help?"
 U: "Yes.  Can you tell me in detail what happened?"
@@ -44,8 +42,6 @@ C: "It was three day ago, at 7:00 PM and John, my brother, was driving home from
 John's car spun out of control, and he felt a sharp pain in his chest as his seatbelt tightened. The airbags deployed, and he heard the sound of metal crunching. His car finally came to a stop on the side of the road, and he was trapped inside. He was dazed and confused and could feel the blood running down his face from a cut on his forehead.
 The other driver was also injured, and he stumbled out of his car. The police arrived shortly after, and the paramedics were called to the scene. John was carefully extracted from his car, and he was rushed to the hospital with serious injuries.
 He is at the hospital recovering in the hospital with broken ribs, a collapsed lung and head injury with couple of stitches."
-
-
 
 ### unit test entire directory.
 python -m unittest discover -s <directory_name>

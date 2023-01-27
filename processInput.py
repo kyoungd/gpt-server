@@ -45,6 +45,28 @@ class ProcessInput:
             self._system.state['sequence'] = 'a' if self._system.state['sequence'] == 'q' else 'q'
             return self._system.state, "OK"
 
+    @staticmethod
+    def Talk(data = None, response = None):
+        app1 = ProcessInput(data)
+        if app1.GlobalState.state['sequence'] == 'q':
+            data, message1 = app1.Run()
+            app1.GlobalState.AddTranscript("AI", message1)
+            if app1.GlobalState.IsGoodBye:
+                return { "continue": False, "message": message1, "data":data }
+            return { "continue": True, "message": message1, "data":data }
+        if app1.GlobalState.state['sequence'] == 'a':
+            data, message2 = app1.Run(response)
+            prompt1 = app1.Gpt3.ResponseMessage
+            app1.GlobalState.AddTranscript("Me", response)
+            if prompt1 == "Okay":
+                app1.GlobalState.AddTranscript("AI", message2)
+                return {"continue": True, "message": message2, "data":data}
+            lastMessage = app1.GlobalState.GetLastMessage()
+            prompt2 = f"{prompt1} \"{lastMessage['text']}\" \"{response}\" "
+            gpt3 = GPT3(prompt2)
+            gpt3.Execute()
+            app1.GlobalState.AddTranscript("AI", gpt3.Message)
+            return {"continue": True, "message": gpt3.Message, "data": data}
 
 if __name__ == "__main__":
     data = None

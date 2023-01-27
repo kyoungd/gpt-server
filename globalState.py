@@ -1,5 +1,6 @@
 import json
 from typing import Union
+from datetime import datetime
 
 class GlobalState:
     _pkid: int = 0
@@ -26,7 +27,8 @@ class GlobalState:
             "score": 0, 
             "isComplete": False,
             "transcript": "",
-            "audioId": 0
+            "audioId": 0,
+            "transcript": []
         }
         gpt3_responses = []
         for processing in data["processing"]:
@@ -103,6 +105,21 @@ class GlobalState:
             answer = reply['a']
             self._processActions(id, answer, func)
         return self.state
+
+    def AddTranscript(self, author, message):
+        # get current universal datetime
+        current_datetime = datetime.utcnow()
+        transcript = {
+            "datetime": current_datetime.strftime("%Y-%m-%d %H:%M:%S"),
+            "name": author,
+            "text": message
+        }
+        self.state['transcript'].append(transcript)
+
+    def GetLastMessage(self, index = 0):
+        # get last message
+        last_message = self.state['transcript'][-1 - index]
+        return last_message
 
     def _processActions(self, id, answer, func):
         block = self.GetStateBlock(id)
