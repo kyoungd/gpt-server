@@ -13,7 +13,7 @@ class TestApiCall(TestCase):
             return ProcessInput.Talk(data)
         return result
 
-    def test_InitialHello(self):
+    def test_SuccessUrgent(self):
         result = self.process(None, 'hello')
         self.assertIsNotNone(result)
         self.assertEqual(result['data']['id'], 100)
@@ -66,6 +66,50 @@ class TestApiCall(TestCase):
         result = self.process(data, r7)
         self.assertIsNotNone(result)
         self.assertEqual(result['data']['id'], 901)
-        self.assertEqual(len(result['data']['transcript']), 22)
+        self.assertEqual(len(result['data']['transcript']), 21)
+
+        print('done')
+
+    def test_FailGreetings(self):
+        result = self.process(None, 'hello')
+        self.assertIsNotNone(result)
+        self.assertEqual(result['data']['id'], 100)
+        self.assertEqual(len(result['data']['transcript']), 1)
+
+        data = result['data']
+        r1 = "Hi.  I am in shock.  I am not sure what to do."
+        result = self.process(data, r1)
+        self.assertIsNotNone(result)
+        self.assertEqual(result['data']['id'], 102)
+
+        data = result['data']
+        r1 = "It is a long and winding road.  It is another Universe."
+        result = self.process(data, r1)
+        self.assertIsNotNone(result)
+        self.assertEqual(result['data']['id'], 909)
+
+        print('done')
+
+    def test_FailNameNotGiven(self):
+        result = self.process(None, 'hello')
+        result['data']['id'] = 201
+
+        data = result['data']
+        r1 = 'I am not sure what you are asking'
+        result = self.process(data, r1)
+        self.assertIsNotNone(result)
+        self.assertEqual(result['data']['id'], 201)
+
+        data = result['data']
+        r2 = 'Can you speak up?'
+        result = self.process(data, r2)
+        self.assertIsNotNone(result)
+        self.assertEqual(result['data']['id'], 201)
+
+        data = result['data']
+        r3 = 'I do not feel like telling you.'
+        result = self.process(data, r2)
+        self.assertIsNotNone(result)
+        self.assertEqual(result['data']['id'], 909)
 
         print('done')
