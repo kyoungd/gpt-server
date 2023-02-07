@@ -131,7 +131,7 @@
                     "question": "Can you please tell me about the accident?",
                     "gpt3": "",
                     "scope": 0,
-                    "speechtimeout": 2,
+                    "speechtimeout": 3,
                     "reply": "Hold on.  I am writing it down.",
                     "actions": [],
                     "is_sympathy_reply": true,
