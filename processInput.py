@@ -69,7 +69,7 @@ class ProcessInput:
             prompt2 = f"{prompt1} \"{lastQuestion['text']}\" \"{response}\" "
             gpt3 = GPT3(prompt2)
             gpt3.Execute()
-            message = gpt3.Message.split('.')[0]
+            message = gpt3.Message.split('.')[0] + '.'
             app1.GlobalState.AddTranscript("AI", message)
             return {"continue": True, "message": message, "data": data}
 

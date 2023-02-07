@@ -34,6 +34,7 @@ Extract the information from the following paragraph and answer them in the json
 11. { "q" : "Your name", "a" : "name" or "did not say" }
 12. { "q" : "your phone number", "a": "number" or "did not say" }
 
+Yes, I was in downtown Los Angeles on the 10 Fwy near Adams rd and I was hit from behind and taken to a hospital and they said my car was totaled. I was also told it was a commercial truck that hit me.  Great case for any attorney
 
 U: "Hi.  My name is Amy.  Thanks for calling Accident Specialists.  How can I help you?"
 C: "Hi.  I need help with a car accident.  Can you help?"
