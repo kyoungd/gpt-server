@@ -48,6 +48,8 @@
                     "question": "Hi.  I am Amy from Automobile Accident Specialist.  How can I help you?",
                     "gpt3": " { \"id\": 100, \"q\" : \"asking about automobile accident?\", \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
                     "scope": 100,
+                    "speechtimeout": 0,
+                    "reply": "Got it.",
                     "actions": [
                         {
                             "answer": [
@@ -89,6 +91,8 @@
                     "question": "We can help you with your automobile accident.  Is that what you want? ",
                     "gpt3": " { \"id\": 102, \"q\" : \"asking for automobile accident?\", \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
                     "scope": 102,
+                    "speechtimeout": 0,
+                    "reply": "Okay.",
                     "actions": [
                         {
                             "answer": [
@@ -127,6 +131,8 @@
                     "question": "Can you please tell me about the accident?",
                     "gpt3": "",
                     "scope": 0,
+                    "speechtimeout": 4,
+                    "reply": "Hold on.  I am writing it down.",
                     "actions": [],
                     "is_sympathy_reply": true,
                     "next": 900
@@ -136,6 +142,8 @@
                     "question": "Can you tell me your name, please?",
                     "gpt3": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Yes.",
                     "actions": [
                         {
                             "answer": [
@@ -165,6 +173,8 @@
                     "question": "What is the best number to reach you?",
                     "gpt3": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "OKay.",
                     "actions": [
                         {
                             "answer": [
@@ -194,6 +204,8 @@
                     "question": "Was there any injuries?",
                     "gpt3": " { \"q\" : \"was there injury\", \"id\": 203, \"a\" : \"severe\" or \"mild\" or \"none\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Got it.",
                     "actions": [
                         {
                             "answer": [
@@ -241,6 +253,8 @@
                     "question": "Did anyone die?",
                     "gpt3": " { \"q\" : \"was there death\", \"id\": 204, \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Got it.",
                     "actions": [
                         {
                             "answer": [
@@ -279,6 +293,8 @@
                     "question": "Did the accident cause anyone pain?",
                     "gpt3": " { \"q\" : \"was there pain\", \"id\": 205, \"a\" : \"severe\" or \"mild\" or \"none\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Okay.",
                     "actions": [
                         {
                             "answer": [
@@ -326,6 +342,8 @@
                     "question": "Where was the accident?",
                     "gpt3": " { \"q\" : \"location of the accident?\", \"id\":206, \"a\" : \"location\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
                     "actions": [
                         {
                             "answer": [
@@ -355,6 +373,8 @@
                     "question": "When was the accident?",
                     "gpt3": " { \"q\" : \"when was the accident\", \"id\": 207, \"a\" : \"date\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Okay",
                     "actions": [
                         {
                             "answer": [
@@ -381,9 +401,11 @@
                 },
                 {
                     "id": 208,
-                    "question": "was there any witness?",
-                    "gpt3": " { \"q\" : \"is there a witness\", \"id\":208, \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
+                    "question": "Was there any witnesses?",
+                    "gpt3": " { \"q\" : \"is there any witnesses to the accident?\", \"id\":208, \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
                     "scope": 200,
+                    "reply": "Got it.",
+                    "speechtimeout": 0,
                     "actions": [
                         {
                             "answer": [
@@ -419,9 +441,11 @@
                 },
                 {
                     "id": 209,
-                    "question": "who was at fault of the accident?",
+                    "question": "Who was at fault of the accident?",
                     "gpt3": " { \"q\" : \"who is at fault of the accident?\", \"id\":209, \"a\" : \"me\", \"other\", \"I do not know\" or \"did not say\" } ",
                     "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Yeah.",
                     "actions": [
                         {
                             "answer": [
@@ -455,6 +479,8 @@
                 {
                     "id": 900,
                     "type": "goodbye",
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
                     "actions": [],
                     "is_sympathy_reply": true
                 },
@@ -463,6 +489,8 @@
                     "question": "Thank you for calling.  One of our qualifying lawyer will call you within 24 hours.  Thank you and take care.",
                     "gpt3": "",
                     "scope": 901,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
                     "actions": [],
                     "is_sympathy_reply": false,
                     "is_answered": false,
@@ -473,6 +501,8 @@
                     "question": "Thank you for calling.  One of our qualifying lawyer will call you within 48 hours.  Thank you and take care.",
                     "gpt3": "",
                     "scope": 902,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
                     "actions": [],
                     "is_sympathy_reply": false,
                     "is_answered": false,
@@ -483,6 +513,8 @@
                     "question": "Thank you for calling.  One of our qualifying lawyer will call you within 3 day.  Thank you and take care.",
                     "gpt3": "",
                     "scope": 903,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
                     "actions": [],
                     "is_sympathy_reply": false,
                     "is_answered": false,
@@ -493,6 +525,8 @@
                     "question": "Unfortunately, we can only help you with automobile accidents.  Sorry about that.  Please take care.  Good bye.",
                     "gpt3": "",
                     "scope": 909,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
                     "actions": [],
                     "is_sympathy_reply": false,
                     "is_answered": false,

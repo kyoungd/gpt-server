@@ -55,14 +55,18 @@ class ProcessInput:
                 return { "continue": False, "message": message1, "data":data }
             return { "continue": True, "message": message1, "data":data }
         if app1.GlobalState.state['sequence'] == 'a':
+            lastQuestion = app1.GlobalState.GetLastMessage()
+            firstId = app1.GlobalState.state['id']
             data, message2 = app1.Run(response)
+            secondId = app1.GlobalState.state['id']
             prompt1 = app1.Gpt3.ResponseMessage
             app1.GlobalState.AddTranscript("Me", response)
-            if prompt1 == "Okay":
-                app1.GlobalState.AddTranscript("AI", message2)
+            if firstId != secondId and prompt1 == "Okay":
+                # Let's take out the okay.  It is double okay when speaking and
+                # it is distracting.
+                # app1.GlobalState.AddTranscript("AI", message2)
                 return {"continue": True, "message": message2, "data":data}
-            lastMessage = app1.GlobalState.GetLastMessage()
-            prompt2 = f"{prompt1} \"{lastMessage['text']}\" \"{response}\" "
+            prompt2 = f"{prompt1} \"{lastQuestion['text']}\" \"{response}\" "
             gpt3 = GPT3(prompt2)
             gpt3.Execute()
             app1.GlobalState.AddTranscript("AI", gpt3.Message)

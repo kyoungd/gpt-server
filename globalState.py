@@ -40,6 +40,8 @@ class GlobalState:
                         "scope": response["scope"],
                         "q": response["gpt3"],
                         "a": "", 
+                        "speechtimeout": response["speechtimeout"],
+                        "reply": response["reply"],
                         "is_answered":  response["is_answered"],
                         "is_neccessary": response["is_neccessary"],
                         "is_sympathy": response["is_sympathy_reply"],
@@ -51,6 +53,8 @@ class GlobalState:
                     gpt3_responses.append({
                         "id": response["id"],
                         "type": processing["type"],
+                        "speechtimeout": response["speechtimeout"],
+                        "reply": response["reply"],
                         "is_sympathy": response["is_sympathy_reply"],
                         "is_field": False,
                         "answer_count": 0
