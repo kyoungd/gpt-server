@@ -1,7 +1,5 @@
-import spacy
 from phoneNumber import PhoneNumber
 
-nlp = spacy.load("en_core_web_md")
 
 class ProcessAction:
     def __init__(self, state, action, answer):
@@ -14,6 +12,9 @@ class ProcessAction:
         if answer.strip().lower() in [s.lower() for s in answers]:
             return True
         return False
+
+    def similar (self, answer, one, similarity):
+        return True
 
     def doSimilarity(self, answer, similarity):
         answers = self._actions['answer']
