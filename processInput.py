@@ -7,8 +7,8 @@ from gpt3 import GPT3
 class ProcessInput:
     _pkid: int = 0
 
-    def __init__(self, trackCall: Union[dict, str] = None):
-        self._system = GlobalState(trackCall)
+    def __init__(self, trackCall: Union[dict, str] = None, template = None):
+        self._system = GlobalState(trackCall, template)
         self._gpt3 = None
 
     def get_globalState(self):
@@ -46,21 +46,28 @@ class ProcessInput:
             return self._system.state, "OK"
 
     @staticmethod
-    def Talk(data = None, response = None):
-        app1 = ProcessInput(data)
+    def Talk(data = None, response = None, template = None) -> dict:
+        app1 = ProcessInput(data, template)
         if app1.GlobalState.state['sequence'] == 'q':
             data, message1 = app1.Run()
             app1.GlobalState.AddTranscript("AI", message1)
             if app1.GlobalState.IsGoodBye:
                 return { "continue": False, "message": message1, "data":data }
-            return { "continue": True, "message": message1, "data":data }
+            lastMessage = app1.GlobalState.LastResponseMessage
+            callResult = GPT3.run(f'rewrite the following for conversation and brevity: {lastMessage}')
+            message2 = callResult['message']
+            data['message'] = message2
+            return { "continue": True, "message": message2, "data":data }
         if app1.GlobalState.state['sequence'] == 'a':
             lastQuestion = app1.GlobalState.GetLastMessage()
             firstId = app1.GlobalState.state['id']
+            app1.GlobalState.AddTranscript("Me", response)
             data, message2 = app1.Run(response)
             secondId = app1.GlobalState.state['id']
             prompt1 = app1.Gpt3.ResponseMessage
-            app1.GlobalState.AddTranscript("Me", response)
+            # message added before in he app1.Run
+            # app1.GlobalState.AddTranscript("Me", response)
+            # 
             if firstId != secondId and prompt1 == "Okay":
                 # Let's take out the okay.  It is double okay when speaking and
                 # it is distracting.

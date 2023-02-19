@@ -10,14 +10,20 @@ import openai
 import banana_dev
 from processInput import ProcessInput
 
-app = Flask(__name__)
-CORS(app)
+App = Flask(__name__)
+CORS(App)
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 api_key = os.getenv("BANANA_WHISPER_API_KEY")
 model_key = os.getenv("BANANA_WHISPER_MODEL_KEY")
 
+def getTemplate(block):
+    try:
+        template = block['template']
+        return template
+    except Exception as e:
+        return None
 
 def getData(block):
     try:
@@ -33,27 +39,32 @@ def getResponse(block):
     except Exception as e:
         return None
 
-def processQuery(data, response):
+def processQuery(data, response, template=None):
     if data is None:
-        return ProcessInput.Talk(data, response)
+        return ProcessInput.Talk(data, response, template)
     result = ProcessInput.Talk(data, response)
     if result['continue']:
         return ProcessInput.Talk(data)
     return result
 
-@app.route('/callcenter', methods=['POST'])
+@App.route('/callcenter', methods=['POST'])
 def call():
     try:
         # Parse the request body as JSON
-        block = request.get_json()
+        block = None
+        try:
+            block = request.get_json()
+        except Exception as e:
+            block = {}
         data = getData(block)
+        template = getTemplate(block)
         response = getResponse(block)
-        result = processQuery(data, response)
+        result = processQuery(data, response, template)
         return jsonify(result['data'])
     except Exception as e:
         abort(str(e), 500)
 
-@app.route("/gpt3", methods=["POST"])
+@App.route("/gpt3", methods=["POST"])
 def gpt3():
     try:
         # Parse the request body as JSON
@@ -74,11 +85,11 @@ def gpt3():
     except Exception as e:
         return jsonify({"status_code": 500, "message": str(e)})
 
-@app.route("/ping", methods=["GET"])
+@App.route("/ping", methods=["GET"])
 def ping():
     return jsonify({"message": "pong"})
 
-@app.route("/tech-code", methods=["GET"])
+@App.route("/tech-code", methods=["GET"])
 def tech_code():
     try:
         # Open the JSON file
@@ -90,7 +101,7 @@ def tech_code():
     except Exception as e:
         return jsonify({"status_code": 500, "message": str(e)})
 
-@app.route("/picture", methods=["POST"])
+@App.route("/picture", methods=["POST"])
 def picture():
     try:
         # Parse the request body as JSON
@@ -109,7 +120,7 @@ def picture():
     except Exception as e:
         return jsonify({"status_code": 500, "result": str(e)})
 
-@app.route("/audio", methods=["POST"])
+@App.route("/audio", methods=["POST"])
 def audio():
     try:
         text = request.form['text']
@@ -148,4 +159,4 @@ def audio():
         })
 
 if __name__ == "__main__":
-    app.run()
+    App.run()

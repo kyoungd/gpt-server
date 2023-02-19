@@ -1,0 +1,175 @@
+{
+    "type": "auto accident",
+    "rating": [
+      {
+        "id": 901,
+        "score": 3,
+        "caseQuality": "A",
+        "contactBy": "immediate",
+        "contactEmail": "kyoungd@hotmail.com",
+        "contactPhone": "123-456-7890",
+        "statement": "Thank you.  We will call you back as soon as possible.  Thank you and take care."
+      },
+      {
+        "id": 909,
+        "score": 0,
+        "caseQuality": "F",
+        "contactBy": "never",
+        "contactEmail": "",
+        "statement": "Thank you for calling, but we do not have enough information to call you back.  Please try it again at a later time.  Bye."
+      }
+    ],
+    "start_id": 200,
+    "prompt": "Extract the information from the following paragraph and answer them in the json format. ",
+    "processing": [
+      {
+        "id": 200,
+        "responses": [
+          {
+            "id": 200,
+            "question": "This is Amy, a receptionist from Talkie.  Can you tell me your name, phone number and purpose of the call?  I will have someone get back to you as soon as possible.",
+            "gpt3": "",
+            "scope": 0,
+            "speechtimeout": 3,
+            "reply": "Hold on.  I am writing it down.",
+            "actions": [],
+            "is_sympathy_reply": true,
+            "next": 900
+          },
+          {
+            "id": 201,
+            "question": "Can you tell me your name, please?",
+            "gpt3": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
+            "scope": 200,
+            "speechtimeout": 0,
+            "reply": "Yes.",
+            "actions": [
+              {
+                "answer": [
+                  "did not say"
+                ],
+                "operation": "match",
+                "similiarity": 1,
+                "is_answered": false,
+                "score": 0
+              },
+              {
+                "answer": [
+                  "*"
+                ],
+                "operation": "exist",
+                "similarity": 0,
+                "is_answered": true,
+                "score": 1
+              }
+            ],
+            "is_sympathy_reply": false,
+            "is_answered": false,
+            "is_neccessary": true
+          },
+          {
+            "id": 202,
+            "question": "What is the best phone number to reach you?",
+            "gpt3": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number\" or \"did not say\" } ",
+            "scope": 200,
+            "speechtimeout": 0,
+            "reply": "OKay.",
+            "actions": [
+              {
+                "answer": [
+                  "did not say"
+                ],
+                "operation": "match",
+                "similiarity": 1,
+                "score": 0,
+                "is_answered": false
+              },
+              {
+                "answer": [
+                  "*"
+                ],
+                "operation": "phone_number",
+                "similiarity": 1,
+                "is_answered": true,
+                "score": 1
+              }
+            ],
+            "is_sympathy_reply": false,
+            "is_answered": false,
+            "is_neccessary": true
+          },
+          {
+            "id": 203,
+            "question": "What is the purpose of this call?",
+            "gpt3": " { \"q\" : \"what is the pupose of this call\", \"id\": 203, \"a\" : \"purpose\" or \"did not say\" } ",
+            "scope": 200,
+            "speechtimeout": 0,
+            "reply": "Got it.",
+            "actions": [
+              {
+                "answer": [
+                  "none", "did not say"
+                ],
+                "operation": "match",
+                "similiarity": 1,
+                "is_answered": false,
+                "score": 0
+              },
+              {
+                "answer": [
+                  "*"
+                ],
+                "operation": "exist",
+                "similiarity": 0,
+                "is_answered": true,
+                "score": 1
+              }
+            ],
+            "is_sympathy_reply": true,
+            "is_answered": false,
+            "is_neccessary": true
+          }
+        ],
+        "type": "extract"
+      },
+      {
+        "id": 900,
+        "responses": [
+          {
+            "id": 900,
+            "type": "goodbye",
+            "speechtimeout": 0,
+            "reply": "Oh.",
+            "actions": [],
+            "is_sympathy_reply": true
+          },
+          {
+            "id": 901,
+            "question": "Thank you for calling.  We will call you back as soon as posbile.  Thank you and take care.",
+            "gpt3": "",
+            "scope": 901,
+            "speechtimeout": 0,
+            "reply": "Oh.",
+            "actions": [],
+            "is_sympathy_reply": false,
+            "is_answered": false,
+            "is_neccessary": false
+          },
+          {
+            "id": 909,
+            "question": "Unfortunately, this call has taken too many detours.  Please call us back later when you are ready.",
+            "gpt3": "",
+            "scope": 909,
+            "speechtimeout": 0,
+            "reply": "Oh.",
+            "actions": [],
+            "is_sympathy_reply": false,
+            "is_answered": false,
+            "is_neccessary": false
+          }
+        ],
+        "type": "goodbye",
+        "next": 0
+      }
+    ]
+  }

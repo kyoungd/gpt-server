@@ -249,46 +249,6 @@
                     "is_neccessary": true
                 },
                 {
-                    "id": 204,
-                    "question": "Did anyone die?",
-                    "gpt3": " { \"q\" : \"was there death\", \"id\": 204, \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
-                    "scope": 200,
-                    "speechtimeout": 0,
-                    "reply": "Got it.",
-                    "actions": [
-                        {
-                            "answer": [
-                                "yes"
-                            ],
-                            "operation": "match",
-                            "similiarity": 1,
-                            "is_answered": true,
-                            "score": 200
-                        },
-                        {
-                            "answer": [
-                                "no"
-                            ],
-                            "operation": "match",
-                            "similiarity": 1,
-                            "is_answered": true,
-                            "score": 1
-                        },
-                        {
-                            "answer": [
-                                "did not say"
-                            ],
-                            "operation": "match",
-                            "similiarity": 1,
-                            "score": 0,
-                            "is_answered": false
-                        }
-                    ],
-                    "is_sympathy_reply": true,
-                    "is_answered": false,
-                    "is_neccessary": true
-                },
-                {
                     "id": 205,
                     "question": "Did the accident cause anyone pain?",
                     "gpt3": " { \"q\" : \"was there pain\", \"id\": 205, \"a\" : \"severe\" or \"mild\" or \"none\" or \"did not say\" } ",
@@ -334,37 +294,6 @@
                         }
                     ],
                     "is_sympathy_reply": true,
-                    "is_answered": false,
-                    "is_neccessary": true
-                },
-                {
-                    "id": 206,
-                    "question": "Where was the accident?",
-                    "gpt3": " { \"q\" : \"location of the accident?\", \"id\":206, \"a\" : \"location\" or \"did not say\" } ",
-                    "scope": 200,
-                    "speechtimeout": 0,
-                    "reply": "Oh.",
-                    "actions": [
-                        {
-                            "answer": [
-                                "did not say"
-                            ],
-                            "operation": "match",
-                            "similiarity": 1,
-                            "is_answered": false,
-                            "score": 1
-                        },
-                        {
-                            "answer": [
-                                "*"
-                            ],
-                            "operation": "exist",
-                            "similiarity": 1,
-                            "is_answered": true,
-                            "score": 1
-                        }
-                    ],
-                    "is_sympathy_reply": false,
                     "is_answered": false,
                     "is_neccessary": true
                 },

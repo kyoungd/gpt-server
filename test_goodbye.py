@@ -26,7 +26,7 @@ class TestGoodBye(TestCase):
     def test_goodbye1(self):
         self.outcome()
         self.setupScore(203, 200)
-        self.setupScore(204, 100)
+        self.setupScore(205, 200)
         data = self.globalState.to_json()
         app = ProcessInput(data)
         data, message = app.Run()
@@ -35,9 +35,8 @@ class TestGoodBye(TestCase):
 
     def test_goodbye2(self):
         self.outcome()
-        self.setupScore(203, 0)
-        self.setupScore(204, 100)
-        self.setupScore(205, 1)
+        self.setupScore(203, 1)
+        self.setupScore(205, 100)
         data = self.globalState.to_json()
         app = ProcessInput(data)
         data, message = app.Run()

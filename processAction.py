@@ -1,4 +1,5 @@
 import spacy
+from phoneNumber import PhoneNumber
 
 nlp = spacy.load("en_core_web_md")
 
@@ -25,6 +26,9 @@ class ProcessAction:
         if answer.strip() == '':
             return False
         return True
+    
+    def doValidatePhoneNumber(self, answer):
+        return PhoneNumber.IsValidNumber(answer)
 
     def DoOperation(self):
         if self._action['operation'] == 'match':
@@ -33,6 +37,8 @@ class ProcessAction:
             return self.doSimilarity(self._answer, self._action['similarity'])
         if self._action['operation'] == 'exist':
             return self.doExist(self._answer)
+        if self._action['operation'] == 'phone_number':
+            return self.doValidatePhoneNumber(self._answer)
         if self._action['operation'] == 'goto':
             return True
 
@@ -40,3 +46,9 @@ class ProcessAction:
     def run (state, action, answer):
         processAction = ProcessAction(state, action, answer)
         return processAction.DoOperation()
+
+    @staticmethod
+    def onError (globalState, action, answer, id):
+        if action['operation'] == 'phone_number':
+            if len(PhoneNumber.ExtractNumber(answer)) > 4:
+                globalState.AddTranscript("AI", "The phone number seems incorrect.  Once again, and slowly.")

@@ -28,17 +28,17 @@ class Test_FullCycleQA(TestCase):
         self.assertEqual(app.GlobalState.state['id'], 202)
     
         app.Run()
-        r4 = "My number is 213-123-1234"
+        r4 = "My number is 1 818 341 4339."
         app.Run(r4)
         self.assertEqual(app.Gpt3.ResponseMessage, "Okay")
-        self.assertEqual(app.GlobalState.state['id'], 206)
-    
+        self.assertEqual(app.GlobalState.state['id'], 207)
+        
         app.Run()
-        r5 = "It was at Winnetka and Reseda."
+        r5 = "It was 4 weeks ago, today."
         app.Run(r5)
         self.assertEqual(app.Gpt3.ResponseMessage, "Okay")
         self.assertEqual(app.GlobalState.state['id'], 208)
-    
+
         app.Run()
         r6 = "No witness."
         app.Run(r6)

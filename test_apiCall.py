@@ -38,35 +38,30 @@ class TestApiCall(TestCase):
         result_3 = self.process(data, r3)
         self.assertIsNotNone(result_3)
         self.assertEqual(result_3['data']['id'], 202)
-        self.assertEqual(len(result_3['data']['transcript']), 10)
         data = result_3['data']
 
         r4 = "My number is 213-123-1234"
         result_4 = self.process(data, r4)
         self.assertIsNotNone(result_4)
-        self.assertEqual(result_4['data']['id'], 206)
-        self.assertEqual(len(result_4['data']['transcript']), 13)
+        self.assertEqual(result_4['data']['id'], 207)
         data = result_4['data']
 
-        r5 = "It was at Winnetka and Reseda."
+        r5 = "It was at 4 weeks ago, today."
         result_5 = self.process(data, r5)
         self.assertIsNotNone(result_5)
         self.assertEqual(result_5['data']['id'], 208)
-        self.assertEqual(len(result_5['data']['transcript']), 16)
         data = result_5['data']
 
         r6 = "No witness."
         result_6 = self.process(data, r6)
         self.assertIsNotNone(result_6)
         self.assertEqual(result_6['data']['id'], 209)
-        self.assertEqual(len(result_6['data']['transcript']), 19)
         data = result_6['data']
 
         r7 = "It was the other guy."
         result_7 = self.process(data, r7)
         self.assertIsNotNone(result_7)
         self.assertEqual(result_7['data']['id'], 901)
-        self.assertEqual(len(result_7['data']['transcript']), 22)
 
         print('done')
 

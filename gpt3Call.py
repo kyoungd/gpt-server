@@ -2,6 +2,7 @@ from processAction import ProcessAction
 from gpt3 import GPT3
 from typing import Union
 import json
+import os
 from globalState import GlobalState
 
 class GPT3Call:
@@ -13,7 +14,8 @@ class GPT3Call:
         self._sequence = self._state['sequence']
 
     def _responseMessage(self):
-        prompt = "If the following statement is simple factual statement without emotion, reply with 'okay'.  Otherwise write a single and simple sympathetic statement as a call center operator to the following statement: "
+        prompt = os.getenv("GPT3_RESPONSE_PROMPT")
+        # prompt = "If the following statement is simple factual statement without emotion, reply with 'okay'.  Otherwise write a single and simple sympathetic statement as a call center operator to the following statement: "
         if self._globalState.IsRepeatLastQuestion:
             return prompt
         if self._block['is_sympathy_reply']:
@@ -51,5 +53,8 @@ class GPT3Call:
         msg = gpt3Result['message'].replace("\n", "")
         reply = json.loads(msg)
         replies = reply if isinstance(reply, list) else [reply]
-        self._globalState.UpdateStates(replies, ProcessAction.run)
+        self._globalState.UpdateStates(replies, ProcessAction.run, ProcessAction.onError)
         self._globalState.NextId()
+
+    def IsFinishedTalking(self, message):
+        pass

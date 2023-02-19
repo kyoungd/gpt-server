@@ -15,19 +15,9 @@
         "a": "severe"
     },
     {
-        "q": "was there death",
-        "id": 204,
-        "a": "no"
-    },
-    {
         "q": "was there pain",
         "id": 205,
         "a": "severe"
-    },
-    {
-        "q": "location of the accident?",
-        "id": 206,
-        "a": "did not say"
     },
     {
         "q": "when was the accident",

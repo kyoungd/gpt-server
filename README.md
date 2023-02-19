@@ -50,3 +50,6 @@ python -m unittest discover -s <directory_name>
 python -m unittest discover -v
 ### unit test debug
 python -m unittest <test_file> --pdb
+
+Has the speaker finished speaking?  If so, reply with 'yes'.  Otherwise reply with 'no'. 
+"It was three day ago, at 7:00 PM and John, my brother, was driving home from work. He had been looking forward to getting home to see his family and relax after a long day. He was driving on a busy highway, and traffic was heavy. Suddenly, out of nowhere, a car came speeding into his lane and hit him head-on.  And there was this.  Big noise. And."
