@@ -7,7 +7,6 @@ from tempfile import NamedTemporaryFile
 from io import BytesIO
 import base64
 import openai
-import banana_dev
 from processInput import ProcessInput
 
 App = Flask(__name__)
@@ -119,44 +118,6 @@ def picture():
         return jsonify({"status_code": 200, "result": result})
     except Exception as e:
         return jsonify({"status_code": 500, "result": str(e)})
-
-@App.route("/audio", methods=["POST"])
-def audio():
-    try:
-        text = request.form['text']
-        wavfile = request.files['wavfile']
-
-        temp_file = NamedTemporaryFile()
-
-        # Write the blob data to the temporary file
-        wavfile.save(temp_file)
-
-        # Expects an mp3 file named test.mp3 in directory
-        with open(temp_file.name, 'rb') as file:
-            mp3bytes = BytesIO(file.read())
-        mp3 = base64.b64encode(mp3bytes.getvalue()).decode("ISO-8859-1")
-
-        model_payload = {"mp3BytesString": mp3}
-
-        out = banana_dev.run(api_key, model_key, model_payload)
-        data = data = out['modelOutputs']
-        text_concat = ""
-        for item in data:
-            text_concat += item['text'] + " "
-
-        text_concat = text_concat.strip()
-        # Now we can store the result object for this file.
-        return({
-            'status': 200,
-            'message': 'OK',
-            'result': text_concat,
-        })
-    except Exception as e:
-        return({
-            'status': 500,
-            'message': 'Internal Server Error',
-            'result': str(e)
-        })
 
 if __name__ == "__main__":
     App.run()
