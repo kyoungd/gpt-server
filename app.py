@@ -100,24 +100,6 @@ def tech_code():
     except Exception as e:
         return jsonify({"status_code": 500, "message": str(e)})
 
-@App.route("/picture", methods=["POST"])
-def picture():
-    try:
-        # Parse the request body as JSON
-        data = request.get_json()
-        # Get the "question" field from the request body
-        size = data["size"]
-        n = data["n"]
-        prompt = data["prompt"]
-        result = openai.createImage({
-            prompt: prompt,
-            n: n,
-            size: size
-        })
-        # Return the response as JSON
-        return jsonify({"status_code": 200, "result": result})
-    except Exception as e:
-        return jsonify({"status_code": 500, "result": str(e)})
 
 if __name__ == "__main__":
     App.run()
