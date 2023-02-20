@@ -38,7 +38,7 @@
           },
           {
             "id": 201,
-            "question": "Can you tell me your name, please?",
+            "question": "Can you tell me your name?",
             "gpt3": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
             "scope": 200,
             "speechtimeout": 0,

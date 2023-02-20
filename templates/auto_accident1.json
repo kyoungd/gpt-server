@@ -1,0 +1,470 @@
+{
+    "type": "auto accident",
+    "rating": [
+        {
+            "id": 901,
+            "score": 1200,
+            "caseQuality": "A",
+            "contactBy": "immediate",
+            "contactEmail": "kyoungd@hotmail.com",
+            "contactPhone": "123-456-7890",
+            "statement": "Thank you.  I believe we gather enough information to move forward.  One of our qualified lawyer will call you within 4 hours.  Thank you and take care."
+        },
+        {
+            "id": 902,
+            "score": 1100,
+            "caseQuality": "B",
+            "contactBy": "next_day",
+            "contactEmail": "kyoungd@hotmail.com",
+            "contactPhone": "123-456-7890",
+            "statement": "Thank you.  I believe we gather enough information to move forward.  One of our qualified lawyer will call you within 24 hours.  Thank you and take care."
+        },
+        {
+            "id": 903,
+            "score": 1000,
+            "caseQuality": "C",
+            "contactBy": "week",
+            "contactEmail": "kyoungd@hotmail.com",
+            "contactPhone": "123-456-7890",
+            "statement": "Thank you.  I believe we gather enough information to move forward.  One of our qualifying lawyer will call you within 3 business days.  Thank you and take care."
+        },
+        {
+            "id": 909,
+            "score": 0,
+            "caseQuality": "F",
+            "contactBy": "never",
+            "contactEmail": "",
+            "statement": "Thank you for calling, but we do not handle that type of problems.  We are sorry about that.  Please take care."
+        }
+    ],
+    "start_id": 100,
+    "prompt": "Extract the information from the following paragraph and answer them in the json format. ",
+    "processing": [
+        {
+            "id": 100,
+            "responses": [
+                {
+                    "id": 100,
+                    "question": "Hi.  I am Amy from Automobile Accident Specialist.  How can I help you?",
+                    "gpt3": " { \"id\": 100, \"q\" : \"asking about automobile accident?\", \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
+                    "scope": 100,
+                    "speechtimeout": 0,
+                    "reply": "Got it.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "yes"
+                            ],
+                            "operation": "match",
+                            "similarity": 0,
+                            "score": 1,
+                            "is_answered": true,
+                            "next": 200
+                        },
+                        {
+                            "answer": [
+                                "no"
+                            ],
+                            "operation": "match",
+                            "similarity": 0,
+                            "score": 1,
+                            "is_answered": true,
+                            "next": 909
+                        },
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "exist",
+                            "similarity": 0,
+                            "score": 1,
+                            "is_answered": true,
+                            "next": 102
+                        }
+                    ],
+                    "is_sympathy_reply": true,
+                    "is_answered": true,
+                    "is_neccessary": false
+                },
+                {
+                    "id": 102,
+                    "question": "We can help you with your automobile accident.  Is that what you want? ",
+                    "gpt3": " { \"id\": 102, \"q\" : \"asking for automobile accident?\", \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
+                    "scope": 102,
+                    "speechtimeout": 0,
+                    "reply": "Okay.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "yes"
+                            ],
+                            "operation": "match",
+                            "similarity": 1,
+                            "score": 1,
+                            "is_answered": true,
+                            "next": 200
+                        },
+                        {
+                            "answer": [
+                                "*"
+                            ],
+                            "operation": "exist",
+                            "similarity": 0,
+                            "score": 1,
+                            "is_answered": true,
+                            "next": 909
+                        }
+                    ],
+                    "is_sympathy_reply": true,
+                    "is_answered": false,
+                    "is_neccessary": false
+                }
+            ],
+            "type": "greetings",
+            "next": 200
+        },
+        {
+            "id": 200,
+            "responses": [
+                {
+                    "id": 200,
+                    "question": "Can you please tell me about the accident?",
+                    "gpt3": "",
+                    "scope": 0,
+                    "speechtimeout": 3,
+                    "reply": "Hold on.  I am writing it down.",
+                    "actions": [],
+                    "is_sympathy_reply": true,
+                    "next": 900
+                },
+                {
+                    "id": 201,
+                    "question": "Can you tell me your name, please?",
+                    "gpt3": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
+                    "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Yes.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": false,
+                            "score": 0
+                        },
+                        {
+                            "answer": [
+                                "*"
+                            ],
+                            "operation": "exist",
+                            "similarity": 0,
+                            "is_answered": true,
+                            "score": 500
+                        }
+                    ],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": true
+                },
+                {
+                    "id": 202,
+                    "question": "What is the best number to reach you?",
+                    "gpt3": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number\" or \"did not say\" } ",
+                    "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "OKay.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "score": 0,
+                            "is_answered": false
+                        },
+                        {
+                            "answer": [
+                                "*"
+                            ],
+                            "operation": "exist",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 500
+                        }
+                    ],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": true
+                },
+                {
+                    "id": 203,
+                    "question": "Was there any injuries?",
+                    "gpt3": " { \"q\" : \"was there injury\", \"id\": 203, \"a\" : \"severe\" or \"mild\" or \"none\" or \"did not say\" } ",
+                    "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Got it.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "severe"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 200
+                        },
+                        {
+                            "answer": [
+                                "mild"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 100
+                        },
+                        {
+                            "answer": [
+                                "none"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 1
+                        },
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": false,
+                            "score": 0
+                        }
+                    ],
+                    "is_sympathy_reply": true,
+                    "is_answered": false,
+                    "is_neccessary": true
+                },
+                {
+                    "id": 205,
+                    "question": "Did the accident cause anyone pain?",
+                    "gpt3": " { \"q\" : \"was there pain\", \"id\": 205, \"a\" : \"severe\" or \"mild\" or \"none\" or \"did not say\" } ",
+                    "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Okay.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "severe"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 200
+                        },
+                        {
+                            "answer": [
+                                "mild"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 100
+                        },
+                        {
+                            "answer": [
+                                "none"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 1
+                        },
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "score": 0,
+                            "is_answered": false
+                        }
+                    ],
+                    "is_sympathy_reply": true,
+                    "is_answered": false,
+                    "is_neccessary": true
+                },
+                {
+                    "id": 207,
+                    "question": "When was the accident?",
+                    "gpt3": " { \"q\" : \"when was the accident\", \"id\": 207, \"a\" : \"date\" or \"did not say\" } ",
+                    "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Okay",
+                    "actions": [
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "is_answered": false,
+                            "score": 1
+                        },
+                        {
+                            "answer": [
+                                "*"
+                            ],
+                            "operation": "exist",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 1
+                        }
+                    ],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": true
+                },
+                {
+                    "id": 208,
+                    "question": "Was there any witnesses?",
+                    "gpt3": " { \"q\" : \"is there any witnesses to the accident?\", \"id\":208, \"a\" : \"yes\" or \"no\" or \"did not say\" } ",
+                    "scope": 200,
+                    "reply": "Got it.",
+                    "speechtimeout": 0,
+                    "actions": [
+                        {
+                            "answer": [
+                                "yes"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "score": 10,
+                            "is_answered": true
+                        },
+                        {
+                            "answer": [
+                                "no"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "score": 1,
+                            "is_answered": true
+                        },
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "score": 0,
+                            "is_answered": false
+                        }
+                    ],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": true
+                },
+                {
+                    "id": 209,
+                    "question": "Who was at fault of the accident?",
+                    "gpt3": " { \"q\" : \"who is at fault of the accident?\", \"id\":209, \"a\" : \"me\", \"other\", \"I do not know\" or \"did not say\" } ",
+                    "scope": 200,
+                    "speechtimeout": 0,
+                    "reply": "Yeah.",
+                    "actions": [
+                        {
+                            "answer": [
+                                "did not say"
+                            ],
+                            "operation": "match",
+                            "similiarity": 1,
+                            "score": 0,
+                            "is_answered": false
+                        },
+                        {
+                            "answer": [
+                                "*"
+                            ],
+                            "operation": "exist",
+                            "similiarity": 1,
+                            "is_answered": true,
+                            "score": 1
+                        }
+                    ],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": true
+                }
+            ],
+            "type": "extract"
+        },
+        {
+            "id": 900,
+            "responses": [
+                {
+                    "id": 900,
+                    "type": "goodbye",
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
+                    "actions": [],
+                    "is_sympathy_reply": true
+                },
+                {
+                    "id": 901,
+                    "question": "Thank you for calling.  One of our qualifying lawyer will call you within 24 hours.  Thank you and take care.",
+                    "gpt3": "",
+                    "scope": 901,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
+                    "actions": [],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": false
+                },
+                {
+                    "id": 902,
+                    "question": "Thank you for calling.  One of our qualifying lawyer will call you within 48 hours.  Thank you and take care.",
+                    "gpt3": "",
+                    "scope": 902,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
+                    "actions": [],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": false
+                },
+                {
+                    "id": 903,
+                    "question": "Thank you for calling.  One of our qualifying lawyer will call you within 3 day.  Thank you and take care.",
+                    "gpt3": "",
+                    "scope": 903,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
+                    "actions": [],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": false
+                },
+                {
+                    "id": 909,
+                    "question": "Unfortunately, we can only help you with automobile accidents.  Sorry about that.  Please take care.  Good bye.",
+                    "gpt3": "",
+                    "scope": 909,
+                    "speechtimeout": 0,
+                    "reply": "Oh.",
+                    "actions": [],
+                    "is_sympathy_reply": false,
+                    "is_answered": false,
+                    "is_neccessary": false
+                }
+
+            ],
+            "type": "goodbye",
+            "next": 0
+        }
+    ]
+}
