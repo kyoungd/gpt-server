@@ -16,7 +16,7 @@ CORS(App)
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-logging.basicConfig(filename='logs/app.log', filemode='w', format='%(asctime)s - %(message)s', level=logging.INFO)
+logging.basicConfig(filename='app.log', filemode='w', format='%(asctime)s - %(message)s', level=logging.INFO)
 logging.info('Starting app')
 
 def getTemplate(block):
