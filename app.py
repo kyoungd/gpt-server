@@ -8,14 +8,16 @@ from io import BytesIO
 import base64
 import openai
 from processInput import ProcessInput
+import logging
 
 App = Flask(__name__)
 CORS(App)
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
-api_key = os.getenv("BANANA_WHISPER_API_KEY")
-model_key = os.getenv("BANANA_WHISPER_MODEL_KEY")
+
+logging.basicConfig(filename='logs/app.log', filemode='w', format='%(asctime)s - %(message)s', level=logging.INFO)
+logging.info('Starting app')
 
 def getTemplate(block):
     try:
@@ -55,12 +57,14 @@ def call():
             block = request.get_json()
         except Exception as e:
             block = {}
+        logging.info(json.dumps(block))
         data = getData(block)
         template = getTemplate(block)
         response = getResponse(block)
         result = processQuery(data, response, template)
         return jsonify(result['data'])
     except Exception as e:
+        logging.info(str(e))
         abort(str(e), 500)
 
 @App.route("/gpt3", methods=["POST"])
