@@ -4,6 +4,8 @@ from typing import Union
 import json
 import os
 from globalState import GlobalState
+import traceback
+from messageLog import MessageLog
 
 class GPT3Call:
     def __init__(self, globalState:GlobalState):
@@ -49,15 +51,17 @@ class GPT3Call:
         return response
 
     def ProcessResponse(self, message):
-        gpt3Result = self.callGpt3(message)
-        msg = gpt3Result['message'].replace("\n", "").replace("\t", " ")
-        reply = json.loads(msg)
-        replies = reply if isinstance(reply, list) else [reply]
-        self._globalState.UpdateStates(replies, ProcessAction.run, ProcessAction.onError)
-        self._globalState.NextId()
+        try {
+            gpt3Result = self.callGpt3(message)
+            msg = gpt3Result['message'].replace("\n", "").replace("\t", " ")
+            reply = json.loads(msg)
+            replies = reply if isinstance(reply, list) else [reply]
+            self._globalState.UpdateStates(replies, ProcessAction.run, ProcessAction.onError)
+            self._globalState.NextId()                
+        }
+        except Exception:
+            MessageLog('gpt-server', 'gpt3call.ProcessResponse', log_message=traceback.format_exc(), log_json={})
+            raise Exception("GPT3Call.ProcessResponse failed")
 
     def IsFinishedTalking(self, message):
         pass
-
-
-{"q": "phone number", "id": 202, "a": "818-679-3565"}
