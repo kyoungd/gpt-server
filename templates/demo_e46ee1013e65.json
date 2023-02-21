@@ -39,7 +39,7 @@
           {
             "id": 201,
             "question": "Can you tell me your name?",
-            "gpt3": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
+            "gpt3": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name or did not say\" } ",
             "scope": 200,
             "speechtimeout": 0,
             "reply": "Yes.",
@@ -70,7 +70,7 @@
           {
             "id": 202,
             "question": "What is the best phone number to reach you?",
-            "gpt3": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number\" or \"did not say\" } ",
+            "gpt3": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number or did not say\" } ",
             "scope": 200,
             "speechtimeout": 0,
             "reply": "OKay.",
@@ -101,7 +101,7 @@
           {
             "id": 203,
             "question": "What is the purpose of this call?",
-            "gpt3": " { \"q\" : \"what is the pupose of this call\", \"id\": 203, \"a\" : \"purpose\" or \"did not say\" } ",
+            "gpt3": " { \"q\" : \"what is this call about\", \"id\": 203, \"a\" : \"purpose of the call or did not say\" } ",
             "scope": 200,
             "speechtimeout": 0,
             "reply": "Got it.",

@@ -53,6 +53,7 @@ def processQuery(data, response, template=None):
 @App.route('/callcenter', methods=['POST'])
 def call():
     try:
+        logging.log(logging.INFO, 'Received request')
         # Parse the request body as JSON
         block = None
         try:
