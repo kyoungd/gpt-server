@@ -20,7 +20,7 @@
       }
     ],
     "start_id": 200,
-    "prompt": "Extract the information from the following paragraph and answer them in the json format. ",
+    "prompt": "Extract the information from the following paragraph and answer them in the following valid json format. ",
     "processing": [
       {
         "id": 200,

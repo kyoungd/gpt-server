@@ -1,147 +1,147 @@
 {
-    "data": {
-      "id": 202,
-      "gpt3": [
-        {
-          "id": 200,
-          "type": "extract",
-          "reply": "Hold on.  I am writing it down.",
-          "is_field": false,
-          "is_sympathy": true,
-          "answer_count": 0,
-          "speechtimeout": 3
-        },
-        {
-          "a": "Janquan",
-          "q": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name\" or \"did not say\" } ",
-          "id": 201,
-          "type": "extract",
-          "reply": "Yes.",
-          "scope": 200,
+  "data": {
+    "id": 202,
+    "gpt3": [
+      {
+        "id": 200,
+        "type": "extract",
+        "reply": "Hold on.  I am writing it down.",
+        "is_field": false,
+        "is_sympathy": true,
+        "answer_count": 0,
+        "speechtimeout": 3
+      },
+      {
+        "a": "Young kwan",
+        "q": " { \"q\" : \"name of the caller\", \"id\": 201, \"a\" : \"name or did not say\" } ",
+        "id": 201,
+        "type": "extract",
+        "reply": "Yes.",
+        "scope": 200,
+        "score": 1,
+        "action": {
           "score": 1,
-          "action": {
-            "score": 1,
-            "answer": [
-              "*"
-            ],
-            "operation": "exist",
-            "similarity": 0,
-            "is_answered": true
-          },
-          "is_field": true,
-          "is_answered": true,
-          "is_sympathy": false,
-          "answer_count": 0,
-          "is_neccessary": true,
-          "speechtimeout": 0
+          "answer": [
+            "*"
+          ],
+          "operation": "exist",
+          "similarity": 0,
+          "is_answered": true
         },
-        {
-          "a": "did not say",
-          "q": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number\" or \"did not say\" } ",
-          "id": 202,
-          "type": "extract",
-          "reply": "OKay.",
-          "scope": 200,
+        "is_field": true,
+        "is_answered": true,
+        "is_sympathy": false,
+        "answer_count": 0,
+        "is_neccessary": true,
+        "speechtimeout": 0
+      },
+      {
+        "a": "did not say",
+        "q": " { \"q\" : \"phone number\", \"id\": 202, \"a\" : \"phone number or did not say\" } ",
+        "id": 202,
+        "type": "extract",
+        "reply": "OKay.",
+        "scope": 200,
+        "score": 0,
+        "action": {
           "score": 0,
-          "action": {
-            "score": 0,
-            "answer": [
-              "did not say"
-            ],
-            "operation": "match",
-            "is_answered": false,
-            "similiarity": 1
-          },
-          "is_field": true,
+          "answer": [
+            "did not say"
+          ],
+          "operation": "match",
           "is_answered": false,
-          "is_sympathy": false,
-          "answer_count": 0,
-          "is_neccessary": true,
-          "speechtimeout": 0
+          "similiarity": 1
         },
-        {
-          "a": "Your services",
-          "q": " { \"q\" : \"what is the pupose of this call\", \"id\": 203, \"a\" : \"purpose\" or \"did not say\" } ",
-          "id": 203,
-          "type": "extract",
-          "reply": "Got it.",
-          "scope": 200,
+        "is_field": true,
+        "is_answered": false,
+        "is_sympathy": false,
+        "answer_count": 0,
+        "is_neccessary": true,
+        "speechtimeout": 0
+      },
+      {
+        "a": "AI services",
+        "q": " { \"q\" : \"what is this call about\", \"id\": 203, \"a\" : \"purpose of the call or did not say\" } ",
+        "id": 203,
+        "type": "extract",
+        "reply": "Got it.",
+        "scope": 200,
+        "score": 1,
+        "action": {
           "score": 1,
-          "action": {
-            "score": 1,
-            "answer": [
-              "*"
-            ],
-            "operation": "exist",
-            "is_answered": true,
-            "similiarity": 0
-          },
-          "is_field": true,
+          "answer": [
+            "*"
+          ],
+          "operation": "exist",
           "is_answered": true,
-          "is_sympathy": true,
-          "answer_count": 0,
-          "is_neccessary": true,
-          "speechtimeout": 0
+          "similiarity": 0
         },
-        {
-          "id": 900,
-          "type": "goodbye",
-          "reply": "Oh.",
-          "is_field": false,
-          "is_sympathy": true,
-          "answer_count": 0,
-          "speechtimeout": 0
-        },
-        {
-          "id": 901,
-          "type": "goodbye",
-          "reply": "Oh.",
-          "is_field": false,
-          "is_sympathy": false,
-          "answer_count": 0,
-          "speechtimeout": 0
-        },
-        {
-          "id": 909,
-          "type": "goodbye",
-          "reply": "Oh.",
-          "is_field": false,
-          "is_sympathy": false,
-          "answer_count": 0,
-          "speechtimeout": 0
-        }
-      ],
-      "pkid": 1,
-      "type": "",
-      "score": 0,
-      "audioId": 0,
-      "message": "\n\nHi Janquan, what's your phone number?",
-      "sequence": "a",
-      "isComplete": false,
-      "transcript": [
-        {
-          "name": "AI",
-          "text": "Hello, I'm Amy from Talkie A I, and I'm available to assist you 24/7. As an A I, I don't need breaks or time off, and I work for less money than a human. If you provide me with your contact information and a brief summary of your needs, I'll send you a summary of our conversation and forward your request to a human. ",
-          "datetime": "2023-02-21 16:24:58"
-        },
-        {
-          "name": "Me",
-          "text": "Hi, Amy. This is Janquan. I am calling you about. Your services.",
-          "datetime": "2023-02-21 16:25:34"
-        },
-        {
-          "name": "AI",
-          "text": "\"Hi, Janquan.",
-          "datetime": "2023-02-21 16:25:38"
-        },
-        {
-          "name": "AI",
-          "text": "What is the best phone number to reach you?",
-          "datetime": "2023-02-21 16:25:38"
-        }
-      ],
-      "template_file": "templates/demo_e46ee1013e65.json"
-    },
-    "message": "Hello. It is 818679. 3565.",
-    "template": null
-  }
+        "is_field": true,
+        "is_answered": true,
+        "is_sympathy": true,
+        "answer_count": 0,
+        "is_neccessary": true,
+        "speechtimeout": 0
+      },
+      {
+        "id": 900,
+        "type": "goodbye",
+        "reply": "Oh.",
+        "is_field": false,
+        "is_sympathy": true,
+        "answer_count": 0,
+        "speechtimeout": 0
+      },
+      {
+        "id": 901,
+        "type": "goodbye",
+        "reply": "Oh.",
+        "is_field": false,
+        "is_sympathy": false,
+        "answer_count": 0,
+        "speechtimeout": 0
+      },
+      {
+        "id": 909,
+        "type": "goodbye",
+        "reply": "Oh.",
+        "is_field": false,
+        "is_sympathy": false,
+        "answer_count": 0,
+        "speechtimeout": 0
+      }
+    ],
+    "pkid": 2,
+    "type": "",
+    "score": 0,
+    "audioId": 0,
+    "message": "\n\nHi Young Kwan,\n\nThank you for reaching out to us. Our AI services are available 24/7 to help you with your inquiry. For the best service, please provide us with a phone number where we can reach you.",
+    "sequence": "a",
+    "isComplete": false,
+    "transcript": [
+      {
+        "name": "AI",
+        "text": "Hello, I'm Amy from Talkie A I, and I'm available to assist you 24/7. As an A I, I don't need breaks or time off, and I work for less money than a human. If you provide me with your contact information and a brief summary of your needs, I'll send you a summary of our conversation and forward your request to a human. ",
+        "datetime": "2023-02-21 22:40:03"
+      },
+      {
+        "name": "Me",
+        "text": "Hi, Amy. This is Young kwan I am calling you about. Your AI services. I like to know more about it.",
+        "datetime": "2023-02-21 22:40:42"
+      },
+      {
+        "name": "AI",
+        "text": "\"It's great to hear from you, Young kwan! Talkie A I is always available to help 24/7, and our AI services are a great way to get help without having to wait on hold.",
+        "datetime": "2023-02-21 22:40:47"
+      },
+      {
+        "name": "AI",
+        "text": "What is the best phone number to reach you?",
+        "datetime": "2023-02-21 22:40:47"
+      }
+    ],
+    "template_file": "templates/demo_e46ee1013e65.json"
+  },
+  "message": "Is eight, one, eight. Six, seven, nine. 3565.",
+  "template": null
+}

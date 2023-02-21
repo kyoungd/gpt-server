@@ -63,6 +63,7 @@ class TestDemo1(TestCase):
         with open('./tests/step2.json', 'r') as f:
             # Load the JSON object
             block = json.load(f)
-        result = self.processQuery(block['data'], 'Hello. My phone number is eight, one, eight. Six, seven, nine. 3565.')
+        reply = "Is eight, one, eight. Six, seven, nine. 3565."
+        result = self.processQuery(block['data'], reply)
         self.assertIsNotNone(result)
 

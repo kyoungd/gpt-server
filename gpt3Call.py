@@ -50,7 +50,7 @@ class GPT3Call:
 
     def ProcessResponse(self, message):
         gpt3Result = self.callGpt3(message)
-        msg = gpt3Result['message'].replace("\n", "")
+        msg = gpt3Result['message'].replace("\n", "").replace("\t", " ")
         reply = json.loads(msg)
         replies = reply if isinstance(reply, list) else [reply]
         self._globalState.UpdateStates(replies, ProcessAction.run, ProcessAction.onError)
@@ -58,3 +58,6 @@ class GPT3Call:
 
     def IsFinishedTalking(self, message):
         pass
+
+
+{"q": "phone number", "id": 202, "a": "818-679-3565"}
