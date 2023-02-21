@@ -51,14 +51,13 @@ class GPT3Call:
         return response
 
     def ProcessResponse(self, message):
-        try {
+        try:
             gpt3Result = self.callGpt3(message)
             msg = gpt3Result['message'].replace("\n", "").replace("\t", " ")
             reply = json.loads(msg)
             replies = reply if isinstance(reply, list) else [reply]
             self._globalState.UpdateStates(replies, ProcessAction.run, ProcessAction.onError)
             self._globalState.NextId()                
-        }
         except Exception:
             MessageLog('gpt-server', 'gpt3call.ProcessResponse', log_message=traceback.format_exc(), log_json={})
             raise Exception("GPT3Call.ProcessResponse failed")
