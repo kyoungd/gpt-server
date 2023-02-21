@@ -9,6 +9,7 @@ import base64
 import openai
 from processInput import ProcessInput
 import logging
+from messageLog import MessageLog
 
 App = Flask(__name__)
 CORS(App)
@@ -57,14 +58,14 @@ def call():
             block = request.get_json()
         except Exception as e:
             block = {}
-        logging.info(json.dumps(block))
+        MessageLog('gpt-server', 'post /callcenter', log_message='Received request', log_json=block)
         data = getData(block)
         template = getTemplate(block)
         response = getResponse(block)
         result = processQuery(data, response, template)
         return jsonify(result['data'])
     except Exception as e:
-        logging.info(str(e))
+        MessageLog('gpt-server', 'post /callcenter', log_message=str(e), log_json={})
         abort(str(e), 500)
 
 @App.route("/gpt3", methods=["POST"])
