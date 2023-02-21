@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-messageLogUrl = os.getenv("MESSAGE_LOG_URL") or "https://simp-admin.herokuapp.com/logs"
+messageLogUrl = os.getenv("MESSAGE_LOG_URL") or "https://simp-admin.herokuapp.com/api/logs"
 
 def MessageLog(name, section, log_message='', log_json=''):
     msg = { 

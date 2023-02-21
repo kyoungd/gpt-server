@@ -10,6 +10,7 @@ import openai
 from processInput import ProcessInput
 import logging
 from messageLog import MessageLog
+import traceback
 
 App = Flask(__name__)
 CORS(App)
@@ -64,8 +65,8 @@ def call():
         response = getResponse(block)
         result = processQuery(data, response, template)
         return jsonify(result['data'])
-    except Exception as e:
-        MessageLog('gpt-server', 'post /callcenter', log_message=str(e), log_json={})
+    except Exception:
+        MessageLog('gpt-server', 'error post /callcenter', log_message=traceback.format_exc(), log_json={})
         abort(str(e), 500)
 
 @App.route("/gpt3", methods=["POST"])

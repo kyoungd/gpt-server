@@ -48,3 +48,12 @@ class TestDemo1(TestCase):
         result_4 = self.processQuery(result_3['data'], response)
         self.assertIsNotNone(result_3)
         self.assertEqual(result_4['data']['id'], 901)
+
+    def test_demo_step2(self):
+        data = None
+        with open('./tests/step2.json', 'r') as f:
+            # Load the JSON object
+            block = json.load(f)
+        result = self.processQuery(block['data'], 'My number is 8186793565.')
+        self.assertIsNotNone(result)
+
