@@ -53,8 +53,11 @@ class ProcessInput:
             app1.GlobalState.AddTranscript("AI", message1)
             if app1.GlobalState.IsGoodBye:
                 return { "continue": False, "message": message1, "data":data }
+            if app1.GlobalState.IsFirstMessage:
+                data['message'] = message1
+                return { "continue": True, "message": message1, "data":data }
             lastMessage = app1.GlobalState.LastResponseMessage
-            callResult = GPT3.run(f'rewrite the following for conversation and brevity: {lastMessage}')
+            callResult = GPT3.run(f'remove redundancy and rewrite the following for natural flow and brevity: {lastMessage}')
             message2 = callResult['message']
             data['message'] = message2
             return { "continue": True, "message": message2, "data":data }

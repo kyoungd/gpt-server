@@ -125,6 +125,11 @@ class GlobalState:
         }
         self.state['transcript'].append(transcript)
 
+    def _isFirstMessage(self):
+        return self.state['id'] == self.template['start_id']
+
+    IsFirstMessage = property(_isFirstMessage)
+    
     def GetLastMessage(self, index = 0):
         # get last message
         last_message = self.state['transcript'][-1 - index]
