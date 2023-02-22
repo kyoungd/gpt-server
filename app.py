@@ -53,7 +53,6 @@ def processQuery(data, response, template=None):
 @App.route('/callcenter', methods=['POST'])
 def call():
     try:
-        logging.log(logging.INFO, 'Received request')
         # Parse the request body as JSON
         block = None
         try:
@@ -66,9 +65,9 @@ def call():
         response = getResponse(block)
         result = processQuery(data, response, template)
         return jsonify(result['data'])
-    except Exception:
+    except:
         MessageLog('gpt-server', 'post /callcenter', log_message=traceback.format_exc(), log_json={})
-        abort(str(e), 500)
+        abort(str(e), 501)
 
 @App.route("/gpt3", methods=["POST"])
 def gpt3():

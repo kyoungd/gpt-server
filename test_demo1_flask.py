@@ -35,4 +35,11 @@ class TestDemo1Flask(TestCase):
         self.assertIsNotNone(data)
         self.assertRegex(data['message'], r'Accident')
         self.assertRegex(data['template_file'], r'accident')
-        
+
+    def test_api_step2(self):
+        block = None
+        with open('./tests/step2.json', 'r') as f:
+            # Load the JSON object
+            block = json.load(f)
+        result_1 = requests.post(self.Url + '/callcenter', json=block)
+        self.assertEqual(result_1.status_code, 200)
