@@ -64,6 +64,7 @@ def call():
         template = getTemplate(block)
         response = getResponse(block)
         result = processQuery(data, response, template)
+        MessageLog('gpt-server', 'post /callcenter', log_message='Process Query Complete', log_json=result)
         return jsonify(result['data'])
     except:
         MessageLog('gpt-server', 'post /callcenter', log_message=traceback.format_exc(), log_json={})
