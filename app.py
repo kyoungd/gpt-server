@@ -11,6 +11,7 @@ from processInput import ProcessInput
 import logging
 from messageLog import MessageLog
 import traceback
+import sys
 
 App = Flask(__name__)
 CORS(App)
@@ -67,6 +68,8 @@ def call():
         return jsonify(result['data'])
     except Exception as e:
         MessageLog('gpt-server', 'post /callcenter', log_message=str(e), log_json={})
+        stack = "".join(traceback.format_exception(sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2]))
+        MessageLog('gpt-server', 'post /callcenter', log_message=str(stack), log_json={})
         abort(str(e), 501)
              
 @App.route("/gpt3", methods=["POST"])
