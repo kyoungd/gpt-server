@@ -27,7 +27,7 @@
         "responses": [
           {
             "id": 200,
-            "question": "Hello, I'm Amy from Talkie A I, and I'm available to assist you 24/7. As an A I, I don't need breaks or time off, and I work for less money than a human. If you provide me with your contact information and a brief summary of your needs, I'll send you a summary of our conversation and forward your request to a human. ",
+            "question": "Hello, I'm Amy from Talkie A I, and I'm available to assist you 24/7. As an A I, I don't need breaks or time off, and I work for less money than a human. If you provide me with your contact information and a brief summary of your needs, I'll send you a summary of our conversation and forward your request to someone who gets paid a lot more than I do.",
             "gpt3": "",
             "scope": 0,
             "speechtimeout": 3,
@@ -141,11 +141,12 @@
             "speechtimeout": 0,
             "reply": "Oh.",
             "actions": [],
-            "is_sympathy_reply": true
+            "is_sympathy_reply": true,
+            "submit": []
           },
           {
             "id": 901,
-            "question": "Thank you for calling.  We will call you back as soon as posbile.  Thank you and take care.",
+            "question": "I got all the relavent information.  Someone who gets paid a lot more than I do will you back.  Thank you and take care.",
             "gpt3": "",
             "scope": 901,
             "speechtimeout": 0,
@@ -153,7 +154,8 @@
             "actions": [],
             "is_sympathy_reply": false,
             "is_answered": false,
-            "is_neccessary": false
+            "is_neccessary": false,
+            "submit": [{"type": "sms", "to": 202, "message": 203}]
           },
           {
             "id": 909,
@@ -165,7 +167,8 @@
             "actions": [],
             "is_sympathy_reply": false,
             "is_answered": false,
-            "is_neccessary": false
+            "is_neccessary": false,
+            "submit": []
           }
         ],
         "type": "goodbye",

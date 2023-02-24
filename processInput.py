@@ -3,6 +3,7 @@ from gpt3Call import GPT3Call
 from typing import Union
 from globalState import GlobalState
 from gpt3 import GPT3
+from submitForm import SubmitForm
 
 class ProcessInput:
     _pkid: int = 0
@@ -52,6 +53,7 @@ class ProcessInput:
             data, message1 = app1.Run()
             app1.GlobalState.AddTranscript("AI", message1)
             if app1.GlobalState.IsGoodBye:
+                SubmitForm.Run(app1.GlobalState)
                 return { "continue": False, "message": message1, "data":data }
             if app1.GlobalState.IsFirstMessage:
                 data['message'] = message1

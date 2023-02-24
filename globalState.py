@@ -221,3 +221,8 @@ class GlobalState:
             if stateBlock['is_answered']:
                 self.state['id'] = stateBlock['action']['next']
 
+    def Gpt3s(self, isAll = None):
+        if not isAll:
+            return self.state['gpt3']
+        gpt3s = list(filter(lambda x: x['is_field'] and x['scope'] == self._block['id'], self._state['gpt3']))
+        return gpt3s
