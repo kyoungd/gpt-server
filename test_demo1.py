@@ -68,10 +68,11 @@ class TestDemo1(TestCase):
         self.assertIsNotNone(result)
 
     def test_demo_step3(self):
-        data = None
+        block = None
         with open('./tests/step3.json', 'r') as f:
             # Load the JSON object
             block = json.load(f)
-        reply = "Hello. It is 818-679-3565."
+        reply = block['message']
         result = self.processQuery(block['data'], reply)
         self.assertIsNotNone(result)
+

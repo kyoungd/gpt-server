@@ -214,7 +214,7 @@ class GlobalState:
                 gpt3s = sorted(inqueries, key=lambda x: x['id'])
                 self.state['id'] = gpt3s[0]['id']
             else:
-                id = templateBlock['scope']
+                id = templateBlock['scope'] if templateBlock['scope'] != 0 else templateBlock['id']
                 templateBlock = self.GetTemplateBlock(id)
                 self.state['id'] = templateBlock['next']
         elif stateBlock['type'] == 'greetings':
