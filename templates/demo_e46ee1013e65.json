@@ -8,7 +8,7 @@
         "contactBy": "immediate",
         "contactEmail": "kyoungd@hotmail.com",
         "contactPhone": "123-456-7890",
-        "statement": "Thank you.  We will call you back as soon as possible.  Thank you and take care."
+        "statement": "Thank you. I am texting you a brief summary of our conversation, now. Someone who gets paid a lot more than I do will you back. Take care. Bye."
       },
       {
         "id": 909,
@@ -16,7 +16,7 @@
         "caseQuality": "F",
         "contactBy": "never",
         "contactEmail": "",
-        "statement": "Thank you for calling, but we do not have enough information to call you back.  Please try it again at a later time.  Bye."
+        "statement": "Thank you for calling, but this call took too many detours.  Please try it again at a later time.  Bye."
       }
     ],
     "start_id": 200,
@@ -146,7 +146,7 @@
           },
           {
             "id": 901,
-            "question": "I got all the relavent information.  Someone who gets paid a lot more than I do will you back.  Thank you and take care.",
+            "question": "",
             "gpt3": "",
             "scope": 901,
             "speechtimeout": 0,
@@ -159,7 +159,7 @@
           },
           {
             "id": 909,
-            "question": "Unfortunately, this call has taken too many detours.  Please call us back later when you are ready.",
+            "question": "",
             "gpt3": "",
             "scope": 909,
             "speechtimeout": 0,
