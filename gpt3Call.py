@@ -49,11 +49,18 @@ class GPT3Call:
         response = GPT3.run(query)
         return response
 
+    def checkGpt3Hickup(self, replies):
+        for reply in replies:
+            if reply['a'].endswith(' or did not say'):
+                reply['a'] = 'did not say'
+        return replies
+
     def ProcessResponse(self, message):
         gpt3Result = self.callGpt3(message)
         msg = gpt3Result['message'].replace("\n", "").replace("\t", " ")
         reply = json.loads(msg)
-        replies = reply if isinstance(reply, list) else [reply]
+        repliesRaw = reply if isinstance(reply, list) else [reply]
+        replies = self.checkGpt3Hickup(repliesRaw)
         self._globalState.UpdateStates(replies, ProcessAction.run, ProcessAction.onError)
         self._globalState.NextId()                
 

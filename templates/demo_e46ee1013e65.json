@@ -8,7 +8,7 @@
         "contactBy": "immediate",
         "contactEmail": "kyoungd@hotmail.com",
         "contactPhone": "123-456-7890",
-        "statement": "Thank you. I am texting you a brief summary of our conversation. Someone who gets paid a lot more than I do will you back. Take care. Bye."
+        "statement": "Thank you. I am texting you a brief summary of our conversation. Someone who gets paid a lot more than I do will call you back. Take care. Bye."
       },
       {
         "id": 909,
@@ -101,7 +101,7 @@
           {
             "id": 203,
             "question": "What is the purpose of this call?",
-            "gpt3": " { \"q\" : \"what is this call about\", \"id\": 203, \"a\" : \"detail description of the call or did not say\" } ",
+            "gpt3": " { \"q\" : \"what is purpose or summary\", \"id\": 203, \"a\" : \"detail summary or description of the call, or did not say\" } ",
             "scope": 200,
             "speechtimeout": 0,
             "reply": "Got it.",
